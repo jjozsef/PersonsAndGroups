@@ -12,8 +12,8 @@ public class Main {
 
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Groups.class)
-                .addAnnotatedClass(Persons.class)
+                .addAnnotatedClass(Group.class)
+                .addAnnotatedClass(Person.class)
                 .buildSessionFactory();
 
         Session session = factory.getCurrentSession();
@@ -21,15 +21,15 @@ public class Main {
         try {
             session.beginTransaction();
 
-            List<Groups> theGroups = session.createQuery("from Groups").getResultList();
+            List<Group> theGroups = session.createQuery("from Group").getResultList();
 
-            for (Groups tempGroup : theGroups) {
+            for (Group tempGroup : theGroups) {
                 System.out.println(tempGroup);
             }
 
-            List<Persons> thePersons = session.createQuery("from Persons").getResultList();
+            List<Person> thePersons = session.createQuery("from Person").getResultList();
 
-            for (Persons tempPerson : thePersons) {
+            for (Person tempPerson : thePersons) {
                 System.out.println(tempPerson);
             }
 
