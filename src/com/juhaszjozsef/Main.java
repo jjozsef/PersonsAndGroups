@@ -53,8 +53,8 @@ public class Main {
     public static void continuation() {
 
         String yesOrNo = "Continue?" +
-                "\n1: YES" +
-                "\n2: NO";
+                "\n1: yes" +
+                "\n2: no";
 
         System.out.println(yesOrNo);
 
