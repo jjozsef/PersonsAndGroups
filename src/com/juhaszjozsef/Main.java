@@ -11,67 +11,74 @@ public class Main {
 
     public static void options() {
 
-        String list = "Options:" +
+        System.out.println("Options:" +
                 "\n1: CREATE a new person" +
                 "\n2: READ the tables" +
                 "\n3: UPDATE the person properties" +
                 "\n4: DELETE a person" +
-                "\n5: exit";
-
-        System.out.println(list);
+                "\n5: exit");
 
         Scanner scanner = new Scanner(System.in);
         int choise = scanner.nextInt();
 
-        if (choise == 1) {
-            Feature.create();
-            continuation();
+        switch (choise) {
 
-        } else if (choise == 2) {
-            Feature.read();
-            continuation();
+            case 1:
+                Feature.create();
+                continuation();
+                break;
 
-        } else if (choise == 3) {
-            Feature.update();
-            continuation();
+            case 2:
+                Feature.read();
+                continuation();
+                break;
 
-        } else if (choise == 4) {
-            Feature.delete();
-            continuation();
+            case 3:
+                Feature.update();
+                continuation();
+                break;
 
-        } else if (choise == 5){
-            boolean factoryOpen = Feature.factory.isOpen();
-            if (factoryOpen){
-                Feature.factory.close();}
+            case 4:
+                Feature.delete();
+                continuation();
+                break;
 
-        } else {
-            System.out.println("Please repeat!");
-            options();
+            case 5:
+                if (Feature.factory.isOpen())
+                    Feature.factory.close();
+                break;
+
+            default:
+                System.out.println("Please repeat!");
+                options();
+                break;
         }
     }
 
     public static void continuation() {
 
-        String yesOrNo = "Continue?" +
+        System.out.println("Continue?" +
                 "\n1: yes" +
-                "\n2: no";
-
-        System.out.println(yesOrNo);
+                "\n2: no");
 
         Scanner scanner = new Scanner(System.in);
         int choise = scanner.nextInt();
 
-        if (choise == 1){
-            options();
-        }
-        else if (choise == 2){
-            boolean factoryOpen = Feature.factory.isOpen();
-            if (factoryOpen){
-                Feature.factory.close();}
-        }
-        else {
-            System.out.println("Please repeat!");
-            continuation();
+        switch (choise) {
+
+            case 1:
+                options();
+                break;
+
+            case 2:
+                if (Feature.factory.isOpen())
+                    Feature.factory.close();
+                break;
+
+            default:
+                System.out.printf("Please repeat!");
+                continuation();
+                break;
         }
     }
 }
