@@ -1,42 +1,77 @@
 package com.juhaszjozsef;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Group.class)
-                .addAnnotatedClass(Person.class)
-                .buildSessionFactory();
+        options();
+    }
 
-        Session session = factory.getCurrentSession();
+    public static void options() {
 
-        try {
-            session.beginTransaction();
+        String list = "Options:" +
+                "\n1: CREATE a new person" +
+                "\n2: READ the tables" +
+                "\n3: UPDATE the person properties" +
+                "\n4: DELETE a person" +
+                "\n5: exit";
 
-            List<Group> theGroups = session.createQuery("from Group").getResultList();
+        System.out.println(list);
 
-            for (Group tempGroup : theGroups) {
-                System.out.println(tempGroup);
-            }
+        Scanner scanner = new Scanner(System.in);
+        int choise = scanner.nextInt();
 
-            List<Person> thePersons = session.createQuery("from Person").getResultList();
+        if (choise == 1) {
+            Feature.create();
+            continuation();
 
-            for (Person tempPerson : thePersons) {
-                System.out.println(tempPerson);
-            }
+        } else if (choise == 2) {
+            Feature.read();
+            continuation();
 
-            session.getTransaction().commit();
+        } else if (choise == 3) {
+            Feature.update();
+            continuation();
 
-        } finally {
-            factory.close();
+        } else if (choise == 4) {
+            Feature.delete();
+            continuation();
+
+        } else if (choise == 5){
+            boolean factoryOpen = Feature.factory.isOpen();
+            if (factoryOpen){
+                Feature.factory.close();}
+
+        } else {
+            System.out.println("Please repeat!");
+            options();
+        }
+    }
+
+    public static void continuation() {
+
+        String yesOrNo = "Continue?" +
+                "\n1: YES" +
+                "\n2: NO";
+
+        System.out.println(yesOrNo);
+
+        Scanner scanner = new Scanner(System.in);
+        int choise = scanner.nextInt();
+
+        if (choise == 1){
+            options();
+        }
+        else if (choise == 2){
+            boolean factoryOpen = Feature.factory.isOpen();
+            if (factoryOpen){
+                Feature.factory.close();}
+        }
+        else {
+            System.out.println("Please repeat!");
+            continuation();
         }
     }
 }
