@@ -62,9 +62,9 @@ public class Main {
                 "\n2: No");
 
         Scanner scanner = new Scanner(System.in);
-        int choise = scanner.nextInt();
+        int choice = scanner.nextInt();
 
-        switch (choise) {
+        switch (choice) {
 
             case 1:
                 options();
