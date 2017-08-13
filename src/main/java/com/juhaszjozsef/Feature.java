@@ -39,6 +39,7 @@ public class Feature {
 
         } catch (Exception e) {
             System.out.println(e);
+            session.close();
         }
     }
 
@@ -74,6 +75,7 @@ public class Feature {
 
         } catch (Exception e){
             System.out.println(e);
+            session.close();
         }
     }
 
@@ -97,6 +99,7 @@ public class Feature {
 
         } catch (Exception e){
             System.out.println(e);
+            session.close();
         }
     }
 
