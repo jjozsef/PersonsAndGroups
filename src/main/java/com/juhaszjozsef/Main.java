@@ -19,9 +19,9 @@ public class Main {
                 "\n5: exit");
 
         Scanner scanner = new Scanner(System.in);
-        int choise = scanner.nextInt();
+        int choice = scanner.nextInt();
 
-        switch (choise) {
+        switch (choice) {
 
             case 1:
                 Feature.create();
