@@ -58,8 +58,8 @@ public class Main {
     public static void continuation() {
 
         System.out.println("Continue?" +
-                "\n1: yes" +
-                "\n2: no");
+                "\n1: Yes" +
+                "\n2: No");
 
         Scanner scanner = new Scanner(System.in);
         int choise = scanner.nextInt();
